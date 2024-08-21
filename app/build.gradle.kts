@@ -11,6 +11,7 @@ plugins {
     id("java-library")
     id("java")
     id("checkstyle")
+    id("jacoco")
 }
 
 repositories {
@@ -18,21 +19,22 @@ repositories {
 }
 
 dependencies {
+    implementation(kotlin("stdlib", "1.8.0")) // Use the same version across dependencies
 
-    implementation(kotlin("stdlib"))
+    // JUnit 5 (JUnit Jupiter)
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+
+    // Kotlin Test (Kotlin Test Framework)
     testImplementation("org.jetbrains.kotlin:kotlin-test:1.8.0")
-    
-    
-    testImplementation(libs.junit)
 
-    implementation(libs.guava)
+    // Guava library
+    implementation("com.google.guava:guava:31.0.1-jre") // Use a specific version for Guava
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.0")
-
+    // JUnit 4 (if needed, otherwise remove)
     testImplementation("junit:junit:4.13.2")
 }
+
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
@@ -57,6 +59,12 @@ sourceSets {
 
 tasks.test {
     useJUnitPlatform() // Use this line if you're using JUnit 5
+    finalizedBy(tasks.jacocoTestReport) // Ensure the report is generated after tests
+
+   include("**/SimpleTest*.class")
+   include("**/SimpleTest*.class")
+   include("**/AppTest*.class")
+
 }
 
 checkstyle {
@@ -64,4 +72,36 @@ checkstyle {
     configFile = file("config/checkstyle/checkstyle.xml")
 
     sourceSets = listOf(project.sourceSets.getByName("main"))
+}
+
+
+
+
+jacoco {
+    toolVersion = "0.8.8" // Use the latest version available
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // Make sure tests are run before generating the report
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+}
+
+
+tasks.register<JacocoReport>("jacocoMainReport") {
+    dependsOn(tasks.classes) // Ensure classes are compiled
+
+    // Set the source set to be covered
+    sourceSets(sourceSets.main.get())
+
+    // Define the reports to be generated
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+
+    // Set the execution data from the Jacoco agent
+    executionData(fileTree(buildDir).include("jacoco/*.exec"))
 }
