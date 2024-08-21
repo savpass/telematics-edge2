@@ -10,6 +10,7 @@ plugins {
     application
     id("java-library")
     id("java")
+    id("checkstyle")
 }
 
 repositories {
@@ -56,4 +57,11 @@ sourceSets {
 
 tasks.test {
     useJUnitPlatform() // Use this line if you're using JUnit 5
+}
+
+checkstyle {
+    toolVersion = "10.12.2" // Use the latest version available
+    configFile = file("config/checkstyle/checkstyle.xml")
+
+    sourceSets = listOf(project.sourceSets.getByName("main"))
 }
