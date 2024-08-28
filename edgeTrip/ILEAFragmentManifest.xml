@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TOVA30Fragment xmlns="http://schemas.toyota-ms.co.jp/appdlv-ml/21cy/2021/10">
+    <AppDeveloper>SPA4386</AppDeveloper>
+    <NetworkConnections>
+        <ConnectionServerType>0</ConnectionServerType>
+    </NetworkConnections>
+    <Grammar>false</Grammar>
+    <RouteGuideCapability>false</RouteGuideCapability>
+    <AppTrigger>
+        <EthernetSignalEnabled>false</EthernetSignalEnabled>
+        <CanSignalEnabled>false</CanSignalEnabled>
+        <EthernetSignal/>
+        <CanSignal/>
+        <ACCON>false</ACCON>
+    </AppTrigger>
+    <AppCategoryList>
+        <OnlineEnabled>false</OnlineEnabled>
+        <AudioEnabled>false</AudioEnabled>
+        <NaviEnabled>false</NaviEnabled>
+        <VehicleEnabled>false</VehicleEnabled>
+        <SettingEnabled>false</SettingEnabled>
+        <Online/>
+        <Vehicle/>
+        <Setting/>
+    </AppCategoryList>
+    <EternalApp>false</EternalApp>
+    <VisibleOnMainMenu>false</VisibleOnMainMenu>
+    <ExternalADFConfig>
+        <enabled>false</enabled>
+    </ExternalADFConfig>
+</TOVA30Fragment>

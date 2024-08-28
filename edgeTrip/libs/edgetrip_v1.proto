@@ -1,0 +1,106 @@
+/*  
+
+  EDGE Trip protobuf schema
+  v1.0
+
+*/ 
+
+syntax = "proto3";
+
+package edgetrip_v1;
+
+option java_multiple_files = true;
+option java_package = "tme.edgetrip.protos";
+option java_outer_classname = "EdgeTripProtos";
+
+// Location message
+message PositionInformation {
+  double latitude = 1;
+  double longitude = 2;
+}
+
+// Trip summary data message
+message TripSummary {
+  // UNIX timestamp of the start of the trip
+  int32 tripStartTime = 1;
+  // Location at the start of the trip
+  PositionInformation tripStartLocation = 2;
+  // UNIX timestamp of the end of the trip
+  int32 tripEndTime = 3;
+  // Location at the end of the trip
+  PositionInformation tripEndLocation = 4;
+  // Total mileage of the trip, in meters
+  double tripLength = 5;
+  // Trip duration, in seconds
+  int32 tripDuration = 6;
+  // Accumulated idle time during the trip, in seconds
+  int32 tripDurationIdle = 7;
+  // Accumulated highway time during the trip, in seconds
+  int32 tripDurationHighway = 8;
+  // Maximum speed of the trip, in kph
+  double tripMaxSpeed = 9;
+  // Average speed of the trip, in kph
+  double tripAvgSpeed = 10;
+  // State of chare at start of trip, (%)
+  int32 socStartTrip = 11;
+  // State of chare at end of trip, (%)
+  int32 socEndTrip = 12;
+}
+
+// Location data collection
+message LocationData {
+  // UNIX timestamp of the data point
+  int32 locationTimestamp = 1;
+  // Location information
+  PositionInformation position = 2;
+}
+
+// CAN data collection message
+message CanData {
+  // UNIX timestamp of the data point
+  int32 canTimestamp = 1;
+  // Vehicle speed in kph
+  double speed = 2;
+  // Front-Back acceleration in m/s2
+  double accFb = 3;
+  // Right-Left acceleration in m/s2
+  double accRl = 4;
+  // Battery state of charge 
+  int32 stateOfCharge = 5;
+  // Active gear
+  enum Gear {
+    UNKNOWN = 0;
+    P_PARK = 1;
+    D_DRIVE = 2;
+    R_REVERSE = 3;
+    N_NEUTRAL = 4;
+    B_BRAKE = 5;
+  }
+  Gear gear = 6;
+}
+
+// Driving score message
+message DrivingScore {
+  // ECO Start score value
+  double ecoStartScore = 1;
+  // ECO Steady score value
+  double ecoSteadyScore = 2;
+  // ECO Decel score value
+  double ecoDecelScore = 3;
+}
+
+// Main Edge Trip message
+message EdgeTripMessage {
+  // UNIX timestamp of the creation of the trip message (YYYY_MM_DD HH:MM:SS)
+  int32 messageCreation = 1;
+  // Version of the protobuf data schema (1)
+  int32 dataVersion = 2;  
+  // Trip Summary Data
+  TripSummary tripSummary = 3;
+  // Periodic Location Data Collection
+  repeated LocationData locationData = 4;
+  // Periodic CAN Data Collection
+  repeated CanData canData = 5;
+  // Hybrid Score
+  DrivingScore drivingScore = 6;
+}

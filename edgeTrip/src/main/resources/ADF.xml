@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AppDescriptor xmlns="http://schemas.toyota-ms.co.jp/appdlv-ml/21cy/2021/10">
+    <AppId>4444</AppId>
+    <AppMainClass>edgetrip.EdgeTrip</AppMainClass>
+    <AppName>Edgetrip</AppName>
+    <AppVersion>1.00</AppVersion>
+    <AppDeveloper>SPA4386</AppDeveloper>
+    <RegulationType>YES</RegulationType>
+    <DiscernmentInfo>
+        <AppPfVersion>2.00</AppPfVersion>
+    </DiscernmentInfo>
+</AppDescriptor>

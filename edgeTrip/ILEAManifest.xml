@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CommonAppInfo xmlns="http://www.ibm.com/automotive/sdk/eclipse/appinfo/v1_2">
+    <AppId>4444</AppId>
+    <AppLevel>3</AppLevel>
+    <AppMainClass>edgetrip.EdgeTrip</AppMainClass>
+    <AppName>Edgetrip</AppName>
+    <AppVersion>1.00</AppVersion>
+    <RegulationType>true</RegulationType>
+    <AppPfVersion>
+        <AppPfVersion>2.00</AppPfVersion>
+    </AppPfVersion>
+    <AudioResumeOn>false</AudioResumeOn>
+    <ResidentApp>false</ResidentApp>
+    <Dependencies/>
+    <AppServices/>
+</CommonAppInfo>
