@@ -12,4 +12,4 @@ plugins {
 rootProject.name = "telematics-edge2"
 
 include("app")
-include("edgeTrip")
+//include("edgeTrip")
